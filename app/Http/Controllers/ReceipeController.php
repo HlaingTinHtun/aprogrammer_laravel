@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Category;
 use App\Receipe;
 use Illuminate\Http\Request;
 
@@ -26,7 +27,8 @@ class ReceipeController extends Controller
      */
     public function create()
     {
-        return view('create');
+        $category = Category::all();
+        return view('create',compact('category'));
     }
 
     /**
@@ -68,7 +70,8 @@ class ReceipeController extends Controller
      */
     public function edit(Receipe $receipe)
     {   
-        return view('edit',compact('receipe'));
+        $category = Category::all();
+        return view('edit',compact('receipe','category'));
     }
 
     /**
