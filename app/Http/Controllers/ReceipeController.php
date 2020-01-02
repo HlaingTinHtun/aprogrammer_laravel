@@ -3,8 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Category;
+use App\Mail\ReceipeStored;
 use App\Receipe;
+use App\test;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
 
 class ReceipeController extends Controller
 {
@@ -51,9 +54,7 @@ class ReceipeController extends Controller
             'category' => 'required',
         ]);
 
-
-        Receipe::create($validatedData + ['author_id' => auth()->id()]);
-
+        $receipe = Receipe::create($validatedData + ['author_id' => auth()->id()]);
 
         return redirect("receipe");
     }
@@ -66,7 +67,6 @@ class ReceipeController extends Controller
      */
     public function show(Receipe $receipe)
     {
-
         $this->authorize('view',$receipe);
         return view('show',compact('receipe'));
     }
