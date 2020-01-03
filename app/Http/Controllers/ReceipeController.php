@@ -5,7 +5,9 @@ namespace App\Http\Controllers;
 use App\Category;
 use App\Events\ReceipeCreatedEvent;
 use App\Mail\ReceipeStored;
+use App\Notifications\ReceipeStoredNotification;
 use App\Receipe;
+use App\User;
 use App\test;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
@@ -25,6 +27,12 @@ class ReceipeController extends Controller
      */
     public function index()
     {
+        // 
+        // $user = User::find(2);
+        // $user->notify(new ReceipeStoredNotification());
+        // echo "sent notification";
+        // exit();
+
         $data = Receipe::where('author_id', auth()->id())->get();
 
         return view('home',compact('data'));

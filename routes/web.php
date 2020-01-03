@@ -15,6 +15,8 @@ use App\Receipe;
 
 Route::resource('receipe', 'ReceipeController');
 Route::get('home', 'HomeController@index');
+Route::get('/','PublicController@index');
+Route::get('detail/{id}','PublicController@show');
 
 Auth::routes();
 
