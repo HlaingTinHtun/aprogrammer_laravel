@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Category;
-use App\Events\ReceipeCreatedEvent;
 use App\Mail\ReceipeStored;
 use App\Receipe;
 use App\test;
@@ -56,8 +55,6 @@ class ReceipeController extends Controller
         ]);
 
         $receipe = Receipe::create($validatedData + ['author_id' => auth()->id()]);
-        
-        // event(new ReceipeCreatedEvent($receipe));
 
         return redirect("receipe");
     }
