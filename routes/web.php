@@ -14,7 +14,11 @@ use App\Receipe;
 */
 
 Route::resource('receipe', 'ReceipeController');
+Route::resource('category', 'CategoryController');
+
 Route::get('home', 'HomeController@index');
+
+//public routes
 Route::get('/','PublicController@index');
 Route::get('detail/{id}','PublicController@show');
 

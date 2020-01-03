@@ -38,8 +38,8 @@
         <div class="bg-light border-right" id="sidebar-wrapper">
           <div class="sidebar-heading">Admin Pannel</div>
           <div class="list-group list-group-flush">
-            <a href="#" class="list-group-item list-group-item-action bg-light">Receipe</a>
-            <a href="#" class="list-group-item list-group-item-action bg-light">Category</a>
+            <a href="/receipe" class="list-group-item list-group-item-action bg-light">Receipe</a>
+            <a href="/category" class="list-group-item list-group-item-action bg-light">Category</a>
           </div>
        </div>
         @endguest
