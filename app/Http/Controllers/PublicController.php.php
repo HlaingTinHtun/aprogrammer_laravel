@@ -9,7 +9,7 @@ class PublicController extends Controller
 {
     public function index()
     {
-    	$receipes = Receipe::paginate(9);
+    	$receipes = Receipe::orderBy('id','desc')->paginate(9);
     	return view('publicviews.welcome',compact('receipes'));
     }
 

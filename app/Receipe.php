@@ -11,7 +11,7 @@ class Receipe extends Model
 {
 	protected $table = 'receipe';
 
-	protected $fillable = ['name','ingredients','category','author_id'];
+	protected $fillable = ['name','ingredients','category','author_id','image'];
 
 	// protected $guarded = [];
 
@@ -24,7 +24,7 @@ class Receipe extends Model
 		parent::boot();
 
 		static::created(function ($receipe){
-			
+
 			session()->flash("message",'Receipe has created successfully!');
 
 		});
@@ -35,5 +35,3 @@ class Receipe extends Model
         return $this->belongsTo(Category::class,'category');
     }
 }
-
-

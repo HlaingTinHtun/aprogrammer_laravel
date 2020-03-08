@@ -36,6 +36,9 @@
               <div class="card mb-12 box-shadow">
                 <div class="card-body">
                   <h3>{{$receipe->name}}</h3>
+                  @if($receipe->image)
+                    <img src="{{'/images/'.$receipe->image}}" width="100" height="100">
+                  @endif
                   <p class="card-text">{{ $receipe->ingredients}}</p>
                   <p>{{ $receipe->categories->name }}</p>
                   <div class="d-flex justify-content-between align-items-center">
@@ -62,6 +65,6 @@
     <!-- Bootstrap core JavaScript
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
-    
+
   </body>
 </html>

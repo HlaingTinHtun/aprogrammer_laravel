@@ -27,7 +27,7 @@ class ReceipeController extends Controller
      */
     public function index()
     {
-        // 
+        //
         // $user = User::find(2);
         // $user->notify(new ReceipeStoredNotification());
         // echo "sent notification";
@@ -57,14 +57,19 @@ class ReceipeController extends Controller
      */
     public function store()
     {
+
         $validatedData = request()->validate([
             'name' => 'required',
             'ingredients' => 'required',
             'category' => 'required',
+            'rimage' => 'required|image',
         ]);
+        //upload image
+        $imageName = date('YmdHis') . "." . request()->rimage->getClientOriginalExtension();
+        request()->rimage->move(public_path('images'), $imageName);
 
-        $receipe = Receipe::create($validatedData + ['author_id' => auth()->id()]);
-        
+        $receipe = Receipe::create($validatedData + ['author_id' => auth()->id(),'image'=>$imageName]);
+
         // event(new ReceipeCreatedEvent($receipe));
 
         return redirect("receipe");
@@ -89,7 +94,7 @@ class ReceipeController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function edit(Receipe $receipe)
-    {   
+    {
         $this->authorize('view',$receipe);
 
         $category = Category::all();
@@ -111,9 +116,14 @@ class ReceipeController extends Controller
             'name' => 'required',
             'ingredients' => 'required',
             'category' => 'required',
+            'rimage' => 'image',
         ]);
-
-        $receipe->update($validatedData);
+        if (request()->rimage) {
+          //upload image
+          $imageName = date('YmdHis') . "." . request()->rimage->getClientOriginalExtension();
+          request()->rimage->move(public_path('images'), $imageName);
+        }
+        $receipe->update($validatedData + ['image'=> empty($imageName) ? null : $imageName]);
 
         return redirect("receipe");
     }

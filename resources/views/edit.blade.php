@@ -14,7 +14,7 @@
 		    </div>
 		@endif
 
-    	<form method="POST" action="/receipe/{{ $receipe->id }}">
+    	<form method="POST" action="/receipe/{{ $receipe->id }}" enctype="multipart/form-data">
 
     	  {{ method_field("PATCH") }}
     	  {{ csrf_field() }}
@@ -28,18 +28,24 @@
 		    <label for="exampleInputPassword1">Ingredients</label>
 		    <input type="text" name="ingredients" class="form-control" value="{{ $receipe->ingredients }}" required>
 		  </div>
-		
-		  <div class="form-group">  
+
+		  <div class="form-group">
 		  	<select class="form-control" name="category">
 		  		@foreach($category as $value)
-		  			<option value="{{$value->id}}" 
+		  			<option value="{{$value->id}}"
 		  				{{ $receipe->categories->id == $value->id ? "selected" : ""}}>{{$value->name}}</option>
 		  		@endforeach
 		  	</select>
 		  </div>
-		  
+
+      <div class="form-group">
+        <label for=""> Receipe Image</label><br>
+        <input type="file" name="rimage"><br><br>
+        <img src="{{'/images/'.$receipe->image}}" width="150" height="150">
+      </div>
+
 		  <button type="submit" class="btn btn-primary">Submit</button>
-		  
+
 		</form>
     </div>
 @endsection
