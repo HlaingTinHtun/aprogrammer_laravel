@@ -41,6 +41,7 @@
                   @endif
                   <p class="card-text">{{ $receipe->ingredients}}</p>
                   <p>{{ $receipe->categories->name }}</p>
+                  <p>date - {{ date('d/m/Y',strtotime($receipe->created_at)) }}</p>
                   <div class="d-flex justify-content-between align-items-center">
                     <div class="btn-group">
                       <a href="/"><button type="button" class="btn btn-sm btn-outline-secondary">Back</button></a>
