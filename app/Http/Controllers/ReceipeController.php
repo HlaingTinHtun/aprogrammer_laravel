@@ -10,6 +10,7 @@ use App\Receipe;
 use App\User;
 use App\test;
 use Illuminate\Http\Request;
+use App\Http\Requests\ReceipeStoreRequest;
 use Illuminate\Support\Facades\Mail;
 
 class ReceipeController extends Controller
@@ -55,15 +56,16 @@ class ReceipeController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store()
+    public function store(ReceipeStoreRequest $request)
     {
 
-        $validatedData = request()->validate([
-            'name' => 'required',
-            'ingredients' => 'required',
-            'category' => 'required',
-            'rimage' => 'required|image',
-        ]);
+        $validatedData = $request->validated();
+        // $validatedData = request()->validate([
+        //     'name' => 'required',
+        //     'ingredients' => 'required',
+        //     'category' => 'required',
+        //     'rimage' => 'required|image',
+        // ]);
         //upload image
         $imageName = date('YmdHis') . "." . request()->rimage->getClientOriginalExtension();
         request()->rimage->move(public_path('images'), $imageName);
