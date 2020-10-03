@@ -26,9 +26,9 @@ class AuthServiceProvider extends ServiceProvider
     {
         // $this->registerPolicies();
         //
-        // $gate->before(function ($user){
-        //   return $user->id == 3; //super user
-        // });
+        //$gate->before(function ($user){
+       //     return $user->id == 3 || $receipe->author_id == $user->id;
+        //});
 
     }
 }
